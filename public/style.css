@@ -281,3 +281,24 @@ body.default {
   animation: bgFloat 15s ease infinite;
   color: #ffffff;
 }
+h4 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  color: #aefbff;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.3), 0 0 10px rgba(0, 255, 255, 0.2);
+  animation: pulseGlow 3s ease-in-out infinite;
+  letter-spacing: 1px;
+}
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+  }
+}
