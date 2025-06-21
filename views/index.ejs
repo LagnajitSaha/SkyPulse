@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather App</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body class="<%= category || 'default'%>">
+  <h1>Weather App</h1>
+
+  <!-- Saved Cities Dropdown -->
+  <div id="saved-cities" style="margin-bottom: 15px;"></div>
+
+  <!-- Search Form -->
+  <form action="/weather" method="POST">
+    <input type="text" name="city" placeholder="Enter city name" required />
+    <button type="submit">Get Weather</button>
+  </form>
+
+  <% if (weather) { %>
+    <div class="weather-card">
+      <!-- Top Section: Location + Temp -->
+      <div class="weather-header">
+        <div class="location-info">
+          <h2><%= weather.city %>, <%= weather.country %></h2>
+          <p class="condition"><%= weather.description %></p>
+        </div>
+        <div class="temperature">
+          <%= weather.temperature %>°C
+        </div>
+      </div>
+
+      <!-- Weather Icon -->
+      <div class="weather-icon">
+        <img src="<%= weather.icon %>" alt="Weather Icon" />
+      </div>
+
+      <!-- Grid Info -->
+      <div class="weather-grid">
+        <div><strong>🕒 Local Time</strong><br><%= weather.localTime %></div>
+        <div><strong>📍 Latitude</strong><br><%= weather.latitude %></div>
+        <div><strong>📍 Longitude</strong><br><%= weather.longitude %></div>
+        <div><strong>💧 Humidity</strong><br><%= weather.humidity %>%</div>
+        <div><strong>💨 Wind Speed</strong><br><%= weather.windSpeed %> km/h</div>
+        <div><strong>🔽 Pressure</strong><br><%= weather.pressure %> hPa</div>
+        <div><strong>🌗 Time</strong><br><%= weather.isDay === "yes" ? "Day" : "Night" %></div>
+      </div>
+
+      <!-- Astro Info -->
+      <div class="astro-section">
+        <h3>🌌 Astro Details</h3>
+        <% if (weather.sunrise) { %>
+          <div class="astro-grid">
+            <div>🌅 Sunrise: <%= weather.sunrise %></div>
+            <div>🌇 Sunset: <%= weather.sunset %></div>
+            <div>🌙 Moonrise: <%= weather.moonrise %></div>
+            <div>🌘 Moonset: <%= weather.moonset %></div>
+          </div>
+        <% } else { %>
+          <p><em>Astro data not available on free tier.</em></p>
+        <% } %>
+      </div>
+    </div>
+  <% } else if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } else { %>
+    <p class="welcome">☁️ Enter a city name to get the latest weather!</p>
+  <% } %>
+</body>
+
+
+
+</html>
