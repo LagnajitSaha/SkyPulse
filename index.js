@@ -7,6 +7,7 @@ dotenv.config();
 const app = express();
 const apiKey = process.env.WEATHER_API_KEY;
 const PORT = process.env.PORT || 3000;
+app.set("view engine", "ejs");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
